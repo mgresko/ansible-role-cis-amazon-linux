@@ -17,3 +17,16 @@
       - section-1
       - "1.1.2"
       - scored
+      - amzn1
+
+- name: 1.1.2 - Ensure separate partition exists for /tmp (Scored)
+  systemd:
+    name: tmp.mount
+    masked: no
+    enabled: yes
+  tags:
+    - level-1
+    - section-1
+    - "1.1.2"
+    - scored
+    - amzn2
