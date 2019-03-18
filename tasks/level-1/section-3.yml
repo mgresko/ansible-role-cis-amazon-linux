@@ -1,0 +1,896 @@
+
+
+
+# 3.1.1 Ensure IP forwarding is disabled
+
+- name: 3.1.1 - Ensure IP forwarding is disabled
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: 0
+    state: present
+  when: amzn_cis_rule_3_1_1
+  tags:
+    - level-1
+    - section-3
+    - "3.1.1"
+    - scored
+
+- name: 3.1.1 - Ensure IP forwarding is disabled in active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv4.ip_forward=0"
+    - "sysctl -w net.ipv4.route.flush=1"
+  when: amzn_cis_rule_3_1_1
+  tags:
+    - level-1
+    - section-3
+    - "3.1.1"
+    - scored
+
+
+
+# 3.1.2 Ensure packet redirect sending is disabled
+
+- name: 3.1.2 - Ensure packet redirect sending is disabled
+  sysctl:
+    ignoreerrors: true
+    name: "{{ item }}"
+    value: 0
+    state: present
+  with_items:
+    - "net.ipv4.conf.all.send_redirects"
+    - "net.ipv4.conf.default.send_redirects"
+  when: amzn_cis_rule_3_1_2
+  tags:
+    - level-1
+    - section-3
+    - "3.1.2"
+    - scored
+
+- name: 3.1.2 - Ensure packet redirect sending is disabled in active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv4.conf.all.send_redirects=0"
+    - "sysctl -w net.ipv4.conf.default.send_redirects=0"
+    - "sysctl -w net.ipv4.route.flush=1"
+  when: amzn_cis_rule_3_1_2
+  tags:
+    - level-1
+    - section-3
+    - "3.1.2"
+    - scored
+
+
+
+# 3.2.1 Ensure source routed packets are not accepted
+
+- name: 3.2.1 - Ensure source routed packets are not accepted
+  sysctl:
+    ignoreerrors: yes
+    name: "{{ item }}"
+    value: 0
+    state: present
+  when: amzn_cis_rule_3_2_1
+  with_items:
+    - "net.ipv4.conf.all.accept_source_route"
+    - "net.ipv4.conf.default.accept_source_route"
+  tags:
+    - level-1
+    - section-3
+    - "3.2.1"
+    - scored
+
+- name: 3.2.1 - Ensure source routed packets are not accepted in active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv4.conf.all.accept_source_route=0"
+    - "sysctl -w net.ipv4.conf.default.accept_source_route=0"
+    - "sysctl -w net.ipv4.route.flush=1"
+  when: amzn_cis_rule_3_2_1
+  tags:
+    - level-1
+    - section-3
+    - "3.2.1"
+    - scored
+
+
+
+# 3.2.2 Ensure ICMP redirects are not accepted
+
+- name: 3.2.2 - Ensure ICMP redirects are not accepted
+  sysctl:
+    ignoreerrors: yes
+    name: "{{ item }}"
+    value: 0
+    state: present
+  with_items:
+    - "net.ipv4.conf.all.accept_redirects"
+    - "net.ipv4.conf.default.accept_redirects"
+  when: amzn_cis_rule_3_2_2
+  tags:
+    - level-1
+    - section-3
+    - "3.2.2"
+    - scored
+
+- name: 3.2.2 - Ensure ICMP redirects are not accepted by active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv4.conf.all.accept_redirects=0"
+    - "sysctl -w net.ipv4.conf.default.accept_redirects=0"
+    - "sysctl -w net.ipv4.route.flush=1"
+  when: amzn_cis_rule_3_2_2
+  tags:
+    - level-1
+    - section-3
+    - "3.2.2"
+    - scored
+
+
+
+# 3.2.3 Ensure secure ICMP redirects are not accepted
+
+- name: 3.2.3 - Ensure secure ICMP redirects are not accepted
+  sysctl:
+    ignoreerrors: yes
+    name: "{{ item }}"
+    value: 0
+    state: present
+  with_items:
+    - "net.ipv4.conf.all.secure_redirects"
+    - "net.ipv4.conf.default.secure_redirects"
+  when: amzn_cis_rule_3_2_3
+  tags:
+    - level-1
+    - section-3
+    - "3.2.3"
+    - scored
+
+- name: 3.2.3 - Ensure secure ICMP redirects are not accepted by active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv4.conf.all.secure_redirects=0"
+    - "sysctl -w net.ipv4.conf.default.secure_redirects=0"
+    - "sysctl -w net.ipv4.route.flush=1"
+  when: amzn_cis_rule_3_2_3
+  tags:
+    - level-1
+    - section-3
+    - "3.2.3"
+    - scored
+
+
+
+# 3.2.4 Ensure suspicious packets are logged
+
+- name: 3.2.4 - Ensure suspicious packets are logged
+  sysctl:
+    ignoreerrors: yes
+    name: "{{ item }}"
+    value: 1
+    state: present
+  with_items:
+    - "net.ipv4.conf.all.log_martians"
+    - "net.ipv4.conf.default.log_martians"
+  when: amzn_cis_rule_3_2_4
+  tags:
+    - level-1
+    - section-3
+    - "3.2.4"
+    - scored
+
+- name: 3.2.4 - Ensure suspicious packets are logged by active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv4.conf.all.log_martians=1"
+    - "sysctl -w net.ipv4.conf.default.log_martians=1"
+    - "sysctl -w net.ipv4.route.flush=1"
+  when: amzn_cis_rule_3_2_4
+  tags:
+    - level-1
+    - section-3
+    - "3.2.4"
+    - scored
+
+
+
+# 3.2.5 Ensure broadcast ICMP requests are ignored
+
+- name: 3.2.5 - Ensure broadcast ICMP requests are ignored
+  sysctl:
+    ignoreerrors: yes
+    name: "net.ipv4.icmp_echo_ignore_broadcasts"
+    value: 1
+    state: present
+  when: amzn_cis_rule_3_2_5
+  tags:
+    - level-1
+    - section-3
+    - "3.2.5"
+    - scored
+
+- name: 3.2.5 - Ensure broadcast ICMP requests are ignored by active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=1"
+    - "sysctl -w net.ipv4.route.flush=1"
+  when: amzn_cis_rule_3_2_5
+  tags:
+    - level-1
+    - section-3
+    - "3.2.5"
+    - scored
+
+
+
+# 3.2.6 Ensure bogus ICMP responses are ignored
+
+- name: 3.2.6 - Ensure bogus ICMP responses are ignored
+  sysctl:
+    ignoreerrors: yes
+    name: "net.ipv4.icmp_ignore_bogus_error_responses"
+    value: 1
+    state: present
+  when: amzn_cis_rule_3_2_6
+  tags:
+    - level-1
+    - section-3
+    - "3.2.6"
+    - scored
+
+- name: 3.2.6 - Ensure bogus ICMP responses are ignored by active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv4.icmp_ignore_bogus_error_responses=1"
+    - "sysctl -w net.ipv4.route.flush=1"
+  when: amzn_cis_rule_3_2_6
+  tags:
+    - level-1
+    - section-3
+    - "3.2.6"
+    - scored
+
+
+
+# 3.2.7 Ensure Reverse Path Filtering is enabled
+
+- name: 3.2.7 - Ensure Reverse Path Filtering is enabled
+  sysctl:
+    ignoreerrors: yes
+    name: "{{ item }}"
+    value: 1
+    state: present
+  with_items:
+    - "net.ipv4.conf.all.rp_filter"
+    - "net.ipv4.conf.default.rp_filter"
+  when: amzn_cis_rule_3_2_7
+  tags:
+    - level-1
+    - section-3
+    - "3.2.7"
+    - scored
+
+- name: 3.2.7 - Ensure Reverse Path Filtering is enabled by active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv4.conf.all.rp_filter=1"
+    - "sysctl -w net.ipv4.conf.default.rp_filter=1"
+    - "sysctl -w net.ipv4.route.flush=1"
+  when: amzn_cis_rule_3_2_7
+  tags:
+    - level-1
+    - section-3
+    - "3.2.7"
+    - scored
+
+
+
+# 3.2.8 Ensure TCP SYN Cookies is enabled
+
+- name: 3.2.8 - Ensure TCP SYN Cookies is enabled
+  sysctl:
+    ignoreerrors: yes
+    name: "net.ipv4.tcp_syncookies"
+    value: 1
+    state: present
+  when: amzn_cis_rule_3_2_8
+  tags:
+    - level-1
+    - section-3
+    - "3.2.8"
+    - scored
+
+- name: 3.2.8 - Ensure TCP SYN Cookies is enabled by active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv4.tcp_syncookies=1"
+    - "sysctl -w net.ipv4.route.flush=1"
+  when: amzn_cis_rule_3_2_8
+  tags:
+    - level-1
+    - section-3
+    - "3.2.8"
+    - scored
+
+
+
+# 3.3.1 Ensure IPv6 router advertisements are not accepted
+
+- name: 3.3.1 - Ensure IPv6 router advertisements are not accepted
+  sysctl:
+    ignoreerrors: yes
+    name: "{{ item }}"
+    value: 0
+    state: present
+  with_items:
+    - "net.ipv6.conf.all.accept_ra"
+    - "net.ipv6.conf.default.accept_ra"
+  ignore_errors: true
+  when: amzn_cis_rule_3_3_1
+  tags:
+    - level-1
+    - section-3
+    - "3.3.1"
+    - scored
+
+- name: 3.3.1 - Ensure IPv6 router advertisements are not accepted by active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv6.conf.all.accept_ra=0"
+    - "sysctl -w net.ipv6.conf.default.accept_ra=0"
+    - "sysctl -w net.ipv4.route.flush=1"
+  ignore_errors: true
+  when: amzn_cis_rule_3_3_1
+  tags:
+    - level-1
+    - section-3
+    - "3.3.1"
+    - scored
+
+
+
+# 3.3.2 Ensure IPv6 redirects are not accepted
+
+- name: 3.3.2 - Ensure IPv6 redirects are not accepted
+  sysctl:
+    ignoreerrors: yes
+    name: "{{ item }}"
+    value: 0
+    state: present
+  with_items:
+    - "net.ipv6.conf.all.accept_redirects"
+    - "net.ipv6.conf.default.accept_redirects"
+  ignore_errors: true
+  when: amzn_cis_rule_3_3_2
+  tags:
+    - level-1
+    - section-3
+    - "3.3.2"
+    - scored
+
+- name: 3.3.2 - Ensure IPv6 redirects are not accepted by active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv6.conf.all.accept_redirects=0"
+    - "sysctl -w net.ipv6.conf.default.accept_redirects=0"
+    - "sysctl -w net.ipv4.route.flush=1"
+  ignore_errors: true
+  when: amzn_cis_rule_3_3_2
+  tags:
+    - level-1
+    - section-3
+    - "3.3.2"
+    - scored
+
+
+
+# 3.3.3 - Ensure IPv6 is disabled
+
+- name: 3.3.3 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_3_3_3
+  when: amzn_cis_rule_3_3_3
+  tags:
+    - level-1
+    - section-3
+    - "3.3.3"
+    - scored
+
+- name: 3.3.3 - Ensure IPv6 is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "options ipv6 disable=1\n"
+  when: (modprobe_3_3_3.stat.exists is not defined or not modprobe_3_3_3.stat.exists) and amzn_cis_rule_3_3_3
+  tags:
+    - level-1
+    - section-3
+    - "3.3.3"
+    - scored
+
+- name: 3.3.3 - Ensure IPv6 is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^options ipv6 disable="
+    line: "options ipv6 disable=1"
+  when: (modprobe_3_3_3.stat.exists is not defined or not modprobe_3_3_3.stat.exists) and amzn_cis_rule_3_3_3
+  tags:
+    - level-1
+    - section-3
+    - "3.3.3"
+    - scored
+
+
+
+# 3.4.1 Ensure TCP Wrappers is installed
+
+- name: 3.4.1 - Ensure TCP Wrappers is installed
+  yum:
+    name: "tcp_wrappers"
+    state: latest
+  when: amzn_cis_rule_3_4_1
+  tags:
+    - level-1
+    - section-3
+    - "3.4.1"
+    - scored
+
+
+
+# 3.4.2 Ensure /etc/hosts.allow is configured
+
+- name: 3.4.2 - Check if /etc/hosts.allow configuration file exists
+  stat:
+    path: "/etc/hosts.allow"
+  register: hosts_allow_3_4_2
+  tags:
+    - level-1
+    - section-3
+    - "3.4.2"
+    - scored
+
+- name: 3.4.2 - Ensure /etc/hosts.allow is configured
+  copy:
+    path: "/etc/hosts.allow"
+    content: "ALL: {{ cis_hosts_allow_all_ips }}\n"
+  when: (hosts_allow_3_4_2.stat.exists is defined and hosts_allow_3_4_2.stat.exists) and amzn_cis_rule_3_4_2
+  tags:
+    - level-1
+    - section-3
+    - "3.4.2"
+    - scored
+
+- name: 3.4.2 - Ensure /etc/hosts.allow is configured
+  lineinfile:
+    dest: "/etc/hosts.allow"
+    regexp: "^ALL:"
+    line: "ALL: {{ cis_hosts_allow_all_ips }}"
+  when: (hosts_allow_3_4_2.stat.exists is defined and hosts_allow_3_4_2.stat.exists) and amzn_cis_rule_3_4_2
+  tags:
+    - level-1
+    - section-3
+    - "3.4.2"
+    - scored
+
+
+
+# 3.4.3 Ensure /etc/hosts.deny is configured
+
+- name: 3.4.3 - Check if /etc/hosts.deny configuration file exists
+  stat:
+    path: "/etc/hosts.deny"
+  register: hosts_deny_3_4_3
+  tags:
+    - level-1
+    - section-3
+    - "3.4.3"
+    - scored
+
+- name: 3.4.3 - Ensure /etc/hosts.deny is configured
+  copy:
+    path: "/etc/hosts.deny"
+    content: "ALL: ALL\n"
+  when: (hosts_deny_3_4_3.stat.exists is not defined or not hosts_deny_3_4_3.stat.exists) and amzn_cis_rule_3_4_3
+  tags:
+    - level-1
+    - section-3
+    - "3.4.3"
+    - scored
+
+- name: 3.4.3 - Ensure /etc/hosts.deny is configured
+  lineinfile:
+    dest: "/etc/hosts.deny"
+    regexp: "^ALL:"
+    line: "ALL: ALL"
+  when: (hosts_deny_3_4_3.stat.exists is not defined or not hosts_deny_3_4_3.stat.exists) and amzn_cis_rule_3_4_3
+  tags:
+    - level-1
+    - section-3
+    - "3.4.3"
+    - scored
+
+
+
+#  3.4.4 Ensure permissions on /etc/hosts.allow are configured
+
+- name: 3.4.4 - Ensure permissions on /etc/hosts.allow are configured
+  file:
+    path: "/etc/hosts.allow"
+    owner: root
+    group: root
+    mode: 0644
+  when: amzn_cis_rule_3_4_4
+  tags:
+    - level-1
+    - section-3
+    - "3.4.4"
+    - scored
+
+
+
+# 3.4.5 Ensure permissions on /etc/hosts.deny are configured
+
+- name: 3.4.5 - Ensure permissions on /etc/hosts.deny are configured
+  file:
+    path: "/etc/hosts.deny"
+    owner: root
+    group: root
+    mode: 0644
+  when: amzn_cis_rule_3_4_5
+  tags:
+    - level-1
+    - section-3
+    - "3.4.5"
+    - scored
+
+
+
+# 3.5.1 - Ensure DCCP is disabled
+
+- name: 3.5.1 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_3_5_1
+  tags:
+    - level-1
+    - section-3
+    - "3.5.1"
+    - not-scored
+
+- name: 3.5.1 - Ensure DCCP is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install dccp /bin/true\n"
+  when: (modprobe_3_5_1.stat.exists is not defined or not modprobe_3_5_1.stat.exists) and amzn_cis_rule_3_5_1
+  tags:
+    - level-1
+    - section-3
+    - "3.5.1"
+    - not-scored
+
+- name: 3.5.1 - Ensure DCCP is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install dccp\\s+"
+    line: "install dccp /bin/true"
+  when: (modprobe_3_5_1.stat.exists is not defined or not modprobe_3_5_1.stat.exists) and amzn_cis_rule_3_5_1
+  tags:
+    - level-1
+    - section-3
+    - "3.5.1"
+    - not-scored
+
+
+
+# 3.5.2 - Ensure SCTP is disabled
+
+- name: 3.5.2 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_3_5_2
+  tags:
+    - level-1
+    - section-3
+    - "3.5.2"
+    - not-scored
+
+- name: 3.5.2 - Ensure SCTP is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install sctp /bin/true\n"
+  when: (modprobe_3_5_2.stat.exists is not defined or not modprobe_3_5_2.stat.exists) and amzn_cis_rule_3_5_2
+  tags:
+    - level-1
+    - section-3
+    - "3.5.2"
+    - not-scored
+
+- name: 3.5.2 - Ensure SCTP is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install sctp\\s+"
+    line: "install sctp /bin/true"
+  when: (modprobe_3_5_2.stat.exists is not defined or not modprobe_3_5_2.stat.exists) and amzn_cis_rule_3_5_2
+  tags:
+    - level-1
+    - section-3
+    - "3.5.2"
+    - not-scored
+
+
+
+
+# 3.5.3 - Ensure RDS is disabled
+
+- name: 3.5.3 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_3_5_3
+  tags:
+    - level-1
+    - section-3
+    - "3.5.3"
+    - not-scored
+
+- name: 3.5.3 - Ensure RDS is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install rds /bin/true\n"
+  when: (modprobe_3_5_3.stat.exists is not defined or not modprobe_3_5_3.stat.exists) and amzn_cis_rule_3_5_3
+  tags:
+    - level-1
+    - section-3
+    - "3.5.3"
+    - not-scored
+
+- name: 3.5.3 - Ensure RDS is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install rds\\s+"
+    line: "install rds /bin/true"
+  when: (modprobe_3_5_3.stat.exists is not defined or not modprobe_3_5_3.stat.exists) and amzn_cis_rule_3_5_3
+  tags:
+    - level-1
+    - section-3
+    - "3.5.3"
+    - not-scored
+
+
+
+# 3.5.4 - Ensure TIPC is disabled
+
+- name: 3.5.4 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_3_5_4
+  tags:
+    - level-1
+    - section-3
+    - "3.5.4"
+    - not-scored
+
+- name: 3.5.4 - Ensure TIPC is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install tipc /bin/true\n"
+  when: (modprobe_3_5_4.stat.exists is not defined or not modprobe_3_5_4.stat.exists) and amzn_cis_rule_3_5_4
+  tags:
+    - level-1
+    - section-3
+    - "3.5.4"
+    - not-scored
+
+- name: 3.5.4 - Ensure TIPC is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install tipc\\s+"
+    line: "install tipc /bin/true"
+  when: (modprobe_3_5_4.stat.exists is not defined or not modprobe_3_5_4.stat.exists) and amzn_cis_rule_3_5_4
+  tags:
+    - level-1
+    - section-3
+    - "3.5.4"
+    - not-scored
+
+
+
+# 3.6.1 Ensure iptables is installed
+
+- name: 3.6.1 - Ensure iptables is installed
+  yum:
+    name: "iptables"
+    state: latest
+  when: amzn_cis_rule_3_6_1
+  tags:
+    - level-1
+    - section-3
+    - "3.6.1"
+    - scored
+
+
+
+# 3.6.2 Ensure default deny firewall policy
+
+- name: 3.6.2 - Ensure default deny firewall policy(DROP INPUT)
+  iptables:
+    chain: "{{item}}"
+    policy: DROP
+  become: yes
+  with_items:
+    - INPUT
+    - FORWARD
+    - OUTPUT
+  when: amzn_cis_rule_3_6_2
+  tags:
+    - level-1
+    - section-3
+    - "3.6.2"
+    - scored
+
+
+
+# 3.6.3 Ensure loopback traffic is configured
+
+- name: 3.6.3 - Ensure loopback traffic is configured(-i lo)
+  iptables:
+    chain: INPUT
+    in_interface: "lo"
+    jump: ACCEPT
+  become: yes
+  when: amzn_cis_rule_3_6_3
+  tags:
+    - level-1
+    - section-3
+    - "3.6.3"
+    - scored
+
+- name: 3.6.3 - Ensure loopback traffic is configured(-o lo)
+  iptables:
+    chain: OUTPUT
+    out_interface: "lo"
+    jump: ACCEPT
+  become: yes
+  when: amzn_cis_rule_3_6_3
+  tags:
+    - level-1
+    - section-3
+    - "3.6.3"
+    - scored
+
+- name: 3.6.3 - Ensure loopback traffic is configured(-i 127.0.0.1/8)
+  iptables:
+    chain: INPUT
+    source: 127.0.0.0/8
+    jump: DROP
+  become: yes
+  when: amzn_cis_rule_3_6_3
+  tags:
+    - level-1
+    - section-3
+    - "3.6.3"
+    - scored
+
+
+
+# 3.6.4 Ensure outbound and established connections are configured
+
+- name: 3.6.4 - Ensure outbound and established connections are configured
+  iptables:
+    chain: OUTPUT
+    protocol: tcp
+    match: state
+    ctstate: ESTABLISHED,NEW
+    jump: ACCEPT
+  become: yes
+  when: amzn_cis_rule_3_6_4
+  tags:
+    - level-1
+    - section-3
+    - "3.6.4"
+    - not-scored
+
+- name: 3.6.4 - Ensure outbound and established connections are configured
+  iptables:
+    chain: OUTPUT
+    protocol: udp
+    match: state
+    ctstate: ESTABLISHED,NEW
+    jump: ACCEPT
+  become: yes
+  when: amzn_cis_rule_3_6_4
+  tags:
+    - level-1
+    - section-3
+    - "3.6.4"
+    - not-scored
+
+- name: 3.6.4 - Ensure outbound and established connections are configured
+  iptables:
+    chain: OUTPUT
+    protocol: icmp
+    match: state
+    ctstate: ESTABLISHED,NEW
+    jump: ACCEPT
+  become: yes
+  when: amzn_cis_rule_3_6_4
+  tags:
+    - level-1
+    - section-3
+    - "3.6.4"
+    - not-scored
+
+- name: 3.6.4 - Ensure outbound and established connections are configured
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    match: state
+    ctstate: ESTABLISHED
+    jump: ACCEPT
+  become: yes
+  when: amzn_cis_rule_3_6_4
+  tags:
+    - level-1
+    - section-3
+    - "3.6.4"
+    - not-scored
+
+- name: 3.6.4 - Ensure outbound and established connections are configured
+  iptables:
+    chain: INPUT
+    protocol: udp
+    match: state
+    ctstate: ESTABLISHED
+    jump: ACCEPT
+  become: yes
+  when: amzn_cis_rule_3_6_4
+  tags:
+    - level-1
+    - section-3
+    - "3.6.4"
+    - not-scored
+
+- name: 3.6.4 - Ensure outbound and established connections are configured
+  iptables:
+    chain: INPUT
+    protocol: icmp
+    match: state
+    ctstate: ESTABLISHED
+    jump: ACCEPT
+  become: yes
+  when: amzn_cis_rule_3_6_4
+  tags:
+    - level-1
+    - section-3
+    - "3.6.4"
+    - not-scored
+
+
+
+# 3.6.5 Ensure firewall rules exist for all open ports
+
+- name: 3.6.5 - Ensure firewall rules exist for all open ports
+  debug:
+    msg: "WARNING - We are already checking this as part of security groups."
+  tags:
+    - level-1
+    - section-3
+    - "3.6.5"
+    - not-scored
+    
+
+- name: 3.6.5 - Ensure firewall rules exist for accepting SSH connections
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 22
+    ctstate: NEW
+    syn: match
+    jump: ACCEPT
+    comment: Accept new SSH connections.
+  become: yes
+  when: amzn_cis_rule_3_6_5
+  tags:
+    - level-1
+    - section-3
+    - "3.6.5"
+    - not-scored

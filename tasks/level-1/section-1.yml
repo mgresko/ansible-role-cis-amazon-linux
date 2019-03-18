@@ -1,0 +1,1142 @@
+---
+
+
+# 1.1.1.1 - Ensure mounting of cramfs filesystems is disabled
+
+- name: 1.1.1.1 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_1_1_1_1
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.1"
+    - scored
+
+- name: 1.1.1.1 - Ensure mounting of cramfs filesystems is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install cramfs /bin/true\n"
+  when: (modprobe_1_1_1_1.stat.exists is not defined or not modprobe_1_1_1_1.stat.exists) and amzn_cis_rule_1_1_1_1
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.1"
+    - scored
+
+- name: 1.1.1.1 - Ensure mounting of cramfs filesystems is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install cramfs"
+    line: "install cramfs /bin/true"
+  when: (modprobe_1_1_1_1.stat.exists is not defined or not modprobe_1_1_1_1.stat.exists) and amzn_cis_rule_1_1_1_1
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.1"
+    - scored
+
+
+# 1.1.1.2 - Ensure mounting of freevxfs filesystems is disabled
+
+- name: 1.1.1.2 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_1_1_1_2
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.2"
+    - scored
+
+- name: 1.1.1.2 - Ensure mounting of freevxfs filesystems is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install freevxfs /bin/true\n"
+  when: (modprobe_1_1_1_2.stat.exists is not defined or not modprobe_1_1_1_2.stat.exists) and amzn_cis_rule_1_1_1_2
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.2"
+    - scored
+
+- name: 1.1.1.2 - Ensure mounting of freevxfs filesystems is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install freevxfs"
+    line: "install freevxfs /bin/true"
+  when: (modprobe_1_1_1_2.stat.exists is defined and modprobe_1_1_1_2.stat.exists) and amzn_cis_rule_1_1_1_2
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.2"
+    - scored
+
+
+
+
+# 1.1.1.3 - Ensure mounting of jffs2 filesystems is disabled
+
+- name: 1.1.1.3 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_1_1_1_3
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.3"
+    - scored
+
+- name: 1.1.1.3 - Ensure mounting of jffs2 filesystems is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install jffs2 /bin/true\n"
+  when: (modprobe_1_1_1_3.stat.exists is not defined or not modprobe_1_1_1_3.stat.exists) and amzn_cis_rule_1_1_1_3
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.3"
+    - scored
+
+- name: 1.1.1.3 - Ensure mounting of jffs2 filesystems is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install jffs2"
+    line: "install jffs2 /bin/true"
+  when: (modprobe_1_1_1_3.stat.exists is defined and modprobe_1_1_1_3.stat.exists) and amzn_cis_rule_1_1_1_3
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.3"
+    - scored
+
+
+
+# 1.1.1.4 - Ensure mounting of hfs filesystems is disabled
+
+- name: 1.1.1.4 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_1_1_1_4
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.4"
+    - scored
+
+- name: 1.1.1.4 - Ensure mounting of hfs filesystems is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install hfs /bin/true\n"
+  when: (modprobe_1_1_1_4.stat.exists is not defined or not modprobe_1_1_1_4.stat.exists) and amzn_cis_rule_1_1_1_4
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.4"
+    - scored
+
+- name: 1.1.1.4 - Ensure mounting of hfs filesystems is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install hfs\\s+"
+    line: "install hfs /bin/true"
+  when: (modprobe_1_1_1_4.stat.exists is defined and modprobe_1_1_1_4.stat.exists) and amzn_cis_rule_1_1_1_4
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.4"
+    - scored
+
+
+
+# 1.1.1.5 - Ensure mounting of hfsplus filesystems is disabled
+
+- name: 1.1.1.5 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_1_1_1_5
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.5"
+    - scored
+
+- name: 1.1.1.5 - Ensure mounting of hfsplus filesystems is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install hfsplus /bin/true\n"
+  when: (modprobe_1_1_1_5.stat.exists is not defined or not modprobe_1_1_1_5.stat.exists) and amzn_cis_rule_1_1_1_5
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.5"
+    - scored
+
+- name: 1.1.1.5 - Ensure mounting of hfsplus filesystems is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install hfsplus"
+    line: "install hfsplus /bin/true"
+  when: (modprobe_1_1_1_5.stat.exists is defined and modprobe_1_1_1_5.stat.exists) and amzn_cis_rule_1_1_1_5
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.5"
+    - scored
+
+
+
+
+# 1.1.1.6 - Ensure mounting of squashfs filesystems is disabled
+
+- name: 1.1.1.6 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_1_1_1_6
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.6"
+    - scored
+
+- name: 1.1.1.6 - Ensure mounting of squashfs filesystems is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install squashfs /bin/true\n"
+  when: (modprobe_1_1_1_6.stat.exists is not defined or not modprobe_1_1_1_6.stat.exists) and amzn_cis_rule_1_1_1_6
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.6"
+    - scored
+
+- name: 1.1.1.6 - Ensure mounting of squashfs filesystems is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install squashfs"
+    line: "install squashfs /bin/true"
+  when: (modprobe_1_1_1_6.stat.exists is defined and modprobe_1_1_1_6.stat.exists) and amzn_cis_rule_1_1_1_6
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.6"
+    - scored
+
+
+
+
+# 1.1.1.7 - Ensure mounting of udf filesystems is disabled
+
+- name: 1.1.1.7 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_1_1_1_7
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.7"
+    - scored
+
+- name: 1.1.1.7 - Ensure mounting of udf filesystems is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install udf /bin/true\n"
+  when: (modprobe_1_1_1_7.stat.exists is not defined or not modprobe_1_1_1_7.stat.exists) and amzn_cis_rule_1_1_1_7
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.7"
+    - scored
+
+- name: 1.1.1.7 - Ensure mounting of udf filesystems is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install udf"
+    line: "install udf /bin/true"
+  when: (modprobe_1_1_1_7.stat.exists is not defined or not modprobe_1_1_1_7.stat.exists) and amzn_cis_rule_1_1_1_7
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.7"
+    - scored
+
+
+
+
+# 1.1.1.8 - Ensure mounting of FAT filesystems is disabled
+
+- name: 1.1.1.8 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_1_1_1_8
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.8"
+    - scored
+
+- name: 1.1.1.8 - Ensure mounting of vfat filesystems is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install vfat /bin/true\n"
+  when: (modprobe_1_1_1_8.stat.exists is not defined or not modprobe_1_1_1_8.stat.exists) and amzn_cis_rule_1_1_1_8
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.8"
+    - scored
+
+- name: 1.1.1.8 - Ensure mounting of vfat filesystems is disabled
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install vfat"
+    line: "install vfat /bin/true"
+  when: (modprobe_1_1_1_8.stat.exists is not defined or not modprobe_1_1_1_8.stat.exists) and amzn_cis_rule_1_1_1_8
+  tags:
+    - level-1
+    - section-1
+    - "1.1.1.8"
+    - scored
+
+
+
+# 1.1.10 Ensure noexec option set on /var/tmp partition
+
+- name: 1.1.10 - Ensure noexec option set on /var/tmp partition
+  mount:
+    name: "{{ item.mount }}"
+    state: mounted
+    fstype: "{{ item.fstype }}"
+    src: "{{ item.device }}"
+    opts: "{{ item.options.split(',') | union(['noexec']) | join(',') }}"
+  when: (item.mount == '/var/tmp') and amzn_cis_rule_1_1_10
+  with_items: "{{ ansible_mounts }}"
+  tags:
+    - level-1
+    - section-1
+    - "1.1.10"
+    - scored
+    - amzn1
+
+- name: 1.1.10 - Ensure noexec option set on /var/tmp partition
+  mount:
+    name: /dev/shm
+    src: tmpfs
+    state: mounted
+    fstype: tmpfs
+    opts: "defaults,nodev,nosuid,noexec"
+  when: amzn_cis_rule_1_1_10
+  tags:
+    - level-1
+    - section-1
+    - "1.1.15"
+    - scored
+    - amzn2
+
+
+
+# 1.1.11 Ensure separate partition exists for /var/log (Scored)
+
+- name: 1.1.11 Ensure separate partition exists for /var/log (Scored)
+  mount:
+    name: "{{ item.mountpoint }}"
+    state: present
+    fstype: "{{item.fstype}}"
+    src: "{{item.device}}"
+  with_items:
+    - { mountpoint: "{{cis_partition_mnt_val_log}}", device: "{{cis_partition_dev_val_log}}", fstype: "{{cis_partition_fs_val_log}}" }
+  when: amzn_cis_rule_1_1_11
+  tags:
+      - level-1
+      - section-1
+      - "1.1.11"
+      - scored
+
+
+
+# 1.1.12 Ensure separate partition exists for /var/log/audit (Scored)
+
+- name: 1.1.12 Ensure separate partition exists for /var/log/audit (Scored)
+  mount:
+    name: "{{ item.mountpoint }}"
+    state: present
+    fstype: "{{item.fstype}}"
+    src: "{{item.device}}"
+  when: amzn_cis_rule_1_1_12
+  with_items:
+    - { mountpoint: "{{cis_partition_mnt_val_log_audit}}", device: "{{cis_partition_dev_val_log_audit}}", fstype: "{{cis_partition_fs_val_log_audit}}" }
+  tags:
+      - level-1
+      - section-1
+      - "1.1.12"
+      - scored
+
+
+
+# 1.1.14 Ensure nodev option set on /home partition
+
+- name: 1.1.14 - Ensure nodev option set on /home partition
+  mount:
+    name: "{{ item.mount }}"
+    state: mounted
+    fstype: "{{ item.fstype }}"
+    src: "{{ item.device }}"
+    opts: "{{ item.options.split(',') | union(['nodev']) | join(',') }}"
+  when: (item.mount == '/home') and amzn_cis_rule_1_1_14
+  with_items: "{{ ansible_mounts }}"
+  tags:
+    - level-1
+    - section-1
+    - "1.1.14"
+    - scored
+
+
+# 1.1.15 Ensure nodev option set on /dev/shm partition
+# 1.1.16 Ensure nosuid option set on /dev/shm partition
+# 1.1.17 Ensure noexec option set on /dev/shm partition
+
+
+- name: "1.1.15 - Ensure nodev option set on /dev/shm partition\n
+         1.1.16 - Ensure nosuid option set on /dev/shm partition\n
+         1.1.17 - Ensure noexec option set on /dev/shm partition"
+  mount:
+    name: /dev/shm
+    src: tmpfs
+    state: mounted
+    fstype: tmpfs
+    opts: "defaults,nodev,nosuid,noexec"
+  when: amzn_cis_rule_1_1_15 and amzn_cis_rule_1_1_16 and amzn_cis_rule_1_1_17
+  tags:
+    - level-1
+    - section-1
+    - "1.1.15"
+    - scored
+    - amzn2
+
+
+# 1.1.18 Ensure sticky bit is set on all world-writable directories
+
+- name: 1.1.18 - Ensure sticky bit is set on all world-writable directories
+  shell: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t"
+  when: amzn_cis_rule_1_1_18
+  tags:
+    - level-1
+    - section-1
+    - "1.1.18"
+    - scored
+
+
+
+# 1.1.19 - Disable Automounting
+
+- name: 1.1.19 - Disable autofs
+  service:
+    name: autofs
+    enabled: false
+    state: stopped
+  ignore_errors: true
+  register: autofs_result
+  failed_when: "autofs_result.failed and 'no service or tool found for: autofs' not in autofs_result.msg"
+  when: amzn_cis_rule_1_1_19
+  tags:
+    - level-1
+    - "1.1.19"
+    - scored
+
+
+
+# 1.1.2 Ensure separate partition exists for /tmp (Scored)
+
+- name: 1.1.2 - Ensure separate partition exists for /tmp (Scored)
+  systemd:
+    name: tmp.mount
+    masked: no
+    enabled: yes
+  when: amzn_cis_rule_1_1_2
+  tags:
+    - level-1
+    - section-1
+    - "1.1.2"
+    - scored
+    - amzn2
+
+# 1.1.3 Ensure nodev option set on /tmp partition
+
+- name: 1.1.3 - Ensure nodev option set on /tmp/partition
+  lineinfile:
+    path: /etc/systemd/system/local-fs.target.wants/tmp.mount
+    backrefs: yes
+    regexp: '^(Options=((?!nodev).)*)$'
+    line: '\1,nodev'
+  when: amzn_cis_rule_1_1_3
+  tags:
+    - level-1
+    - section-1
+    - "1.1.3"
+    - scored
+    - amzn2
+
+
+
+
+# 1.1.4 Ensure nosuid option set on /tmp partition
+
+- name: 1.1.4 - Ensure nosuid option set on /tmp partition
+  lineinfile:
+    path: /etc/systemd/system/local-fs.target.wants/tmp.mount
+    backrefs: yes
+    regexp: '^(Options=((?!nosuid).)*)$'
+    line: '\1,nosuid'
+  when: amzn_cis_rule_1_1_4
+  tags:
+    - level-1
+    - section-1
+    - "1.1.4"
+    - scored
+    - amzn2
+
+
+
+# 1.1.5 Ensure noexec option set on /tmp partition
+
+- name: 1.1.5 - Ensure noexec option set on /tmp partition
+  lineinfile:
+    path: /etc/systemd/system/local-fs.target.wants/tmp.mount
+    backrefs: yes
+    regexp: '^(Options=((?!noexec).)*)$'
+    line: '\1,noexec'
+  when: amzn_cis_rule_1_1_5
+  tags:
+    - level-1
+    - section-1
+    - "1.1.5"
+    - scored
+    - amzn2
+
+
+
+
+# 1.1.8 Ensure nodev option set on /var/tmp partition
+# 1.1.9 Ensure nosuid option set on /var/tmp partition
+
+- name: "1.1.8 - Ensure nodev option set on /var/tmp partition\n
+         1.1.9 - Ensure nosuid option set on /var/tmp partition"
+  mount:
+    name: /var/tmp
+    src: tmpfs
+    state: mounted
+    fstype: tmpfs
+    opts: "defaults,nodev,nosuid"
+  when: amzn_cis_rule_1_1_8 and amzn_cis_rule_1_1_9
+  tags:
+    - level-1
+    - section-1
+    - "1.1.8"
+    - "1.1.9"
+    - scored
+    - amzn2
+
+
+
+# 1.2.1 - Ensure package manager repositories are configured
+
+# The remediation actions for this recommendation are site-specific, therefore we test that
+# executing 'yum repolist' results in no errors.
+- name: 1.2.1 - Verify that repositories are configured correctly
+  command: yum repolist
+  when: amzn_cis_rule_1_2_1
+  tags:
+    - level-1
+    - "1.2.1"
+    - scored
+
+
+
+# 1.2.2 Ensure GPG keys are configured
+
+# The remediation actions for this recommendation are site-specific, therefore we test that
+# executing the specified rpm command results in no errors.
+- name: 1.2.2 - Ensure GPG keys are configured
+  shell: rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
+  when: amzn_cis_rule_1_2_2
+  tags:
+    - level-1
+    - "1.2.2"
+    - scored
+
+
+
+
+# 1.2.3 - Ensure gpgcheck is globally activated
+
+- name: 1.2.3 - Get all repos on remote host
+  find:
+    paths: "/etc/yum.repos.d"
+    pattern: "*.repo"
+  register: yum_repos
+  tags:
+    - level-1
+    - "1.2.3"
+    - scored
+
+- name: 1.2.3 - Verify that gpgcheck is enabled in /etc/yum.conf
+  lineinfile:
+    regexp: "^gpgcheck"
+    line: "gpgcheck=1"
+    dest: "/etc/yum.conf"
+  when: amzn_cis_rule_1_2_3
+  tags:
+    - level-1
+    - "1.2.3"
+    - scored
+
+- name: 1.2.3 - Verify that gpgcheck is enabled for all repositories in /etc/yum.repos.d
+  replace:
+    regexp: "^gpgcheck=0"
+    replace: "gpgcheck=1"
+    dest: "{{ item.path }}"
+  with_items: "{{ yum_repos.files }}"
+  when: amzn_cis_rule_1_2_3
+  tags:
+    - level-1
+    - "1.2.3"
+    - scored
+
+
+
+# 1.3.1 Ensure AIDE is installed
+
+- name: 1.3.1 - Ensure AIDE is installed
+  yum:
+    name: aide
+    state: present
+  when: amzn_cis_rule_1_3_1
+  tags:
+    - level-1
+    - section-1
+    - "1.3.1"
+    - scored
+
+- name: 1.3.1 - Check that aide database exists
+  stat:
+    path: "{{ cis_aide_database_filename }}"
+  register: aide_1_3_1
+  when: amzn_cis_rule_1_3_1
+  tags:
+    - level-1
+    - section-1
+    - "1.3.1"
+    - scored
+
+# We expect that 'aide --init' has been run and the generated database has been moved
+- name: 1.3.1 - Ensure aide database exists
+  command: "{{ item }}"
+  when: aide_1_3_1.stat.exists is not defined or not aide_1_3_1.stat.exists
+  with_items:
+    - "aide --init"
+    - "mv {{ cis_aide_src_database_filename }} {{ cis_aide_database_filename }}"
+  when: amzn_cis_rule_1_3_1
+  tags:
+    - level-1
+    - section-1
+    - "1.3.1"
+    - scored
+
+
+
+
+# 1.3.2 - Ensure filesystem integrity is regularly checked
+
+- name: 1.3.2 - Ensure cron is installed
+  yum:
+    name: cronie
+    state: present
+  when: amzn_cis_rule_1_3_2
+  tags:
+    - level-1
+    - section-1
+    - "1.3.2"
+    - scored
+
+- name: 1.3.2 - Create cron entry to run aide filesystem integrity check regularly
+  cron:
+    name: "CIS 1.3.2 - Run aide filesystem integrity check"
+    user: "{{ cis_aide_cron_user }}"
+    job: "{{ cis_aide_cron_job }}"
+    minute: "{{ cis_aide_cron_minute }}"
+    hour: "{{ cis_aide_cron_hour }}"
+    weekday: "{{ cis_aide_cron_dow }}"
+    day: "{{ cis_aide_cron_dom }}"
+    month: "{{ cis_aide_cron_month }}"
+    state: present
+  when: amzn_cis_rule_1_3_2
+  tags:
+    - level-1
+    - section-1
+    - "1.3.2"
+    - scored
+
+
+
+# 1.4.1 Ensure permissions on bootloader config are configured
+
+- name: 1.4.1 - Check if grub bootloader file exists
+  stat:
+    path: "{{ cis_grub_bootloader_filename }}"
+  register: grub_1_4_1
+  tags:
+    - level-1
+    - "1.4.1"
+    - scored
+
+- name: 1.4.1 - Set permissions on grub configuration
+  file:
+    path: "{{ cis_grub_bootloader_filename }}"
+    owner: root
+    group: root
+    mode:  "og-rwx"
+    state: file
+  when: grub_1_4_1.stat.exists and amzn_cis_rule_1_4_1
+  tags:
+    - level-1
+    - "1.4.1"
+    - scored
+
+
+
+# 1.4.2 - Ensure authentication is required for single user mode
+
+- name: 1.4.2 - Check if sysconfig init file exists
+  stat:
+    path: "{{ cis_sysconfig_init_filename }}"
+  register: sysconfig_init_1_4_2
+  tags:
+    - level-1
+    - "1.4.2"
+    - scored
+
+- name: 1.4.2 - Ensure authentication is required for single-user mode
+  copy:
+    dest: "{{ cis_sysconfig_init_filename }}"
+    content: "SINGLE=/sbin/sulogin\n"
+  when: (sysconfig_init_1_4_2.stat.exists is not defined or not sysconfig_init_1_4_2.stat.exists) and amzn_cis_rule_1_4_2
+  tags:
+    - level-1
+    - "1.4.2"
+    - scored
+
+- name: 1.4.2 - Ensure authentication is required for single-user mode
+  lineinfile:
+    dest: "{{ cis_sysconfig_init_filename }}"
+    regexp: "^SINGLE="
+    line: "SINGLE=/sbin/sulogin"
+  when: (sysconfig_init_1_4_2.stat.exists is defined and sysconfig_init_1_4_2.stat.exists) and amzn_cis_rule_1_4_2
+  tags:
+    - level-1
+    - "1.4.2"
+    - scored
+
+
+
+
+# 1.4.3 - Ensure interactive boot is not enabled
+
+- name: 1.4.3 - Check if sysconfig init file exists
+  stat:
+    path: "{{ cis_sysconfig_init_filename }}"
+  register: sysconfig_init_1_4_3
+  tags:
+    - level-1
+    - "1.4.3"
+    - scored
+
+- name: 1.4.3 - Ensure interactive boot is not enabled
+  copy:
+    dest: "{{ cis_sysconfig_init_filename }}"
+    content: "PROMPT=no\n"
+  when: (sysconfig_init_1_4_3.stat.exists is not defined or not sysconfig_init_1_4_3.stat.exists) and amzn_cis_rule_1_4_3
+  tags:
+    - level-1
+    - "1.4.3"
+    - scored
+
+- name: 1.4.3 - Ensure interactive boot is not enabled
+  lineinfile:
+    dest: "{{ cis_sysconfig_init_filename }}"
+    regexp: "^PROMPT="
+    line: "PROMPT=no"
+  when: (sysconfig_init_1_4_3.stat.exists is not defined or not sysconfig_init_1_4_3.stat.exists) and amzn_cis_rule_1_4_3
+  tags:
+    - level-1
+    - "1.4.3"
+    - scored
+
+
+
+
+# 1.5.1 Ensure core dumps are restricted
+
+- name: 1.5.1 - Check if security limits file exists
+  stat:
+    path: "{{ cis_security_limits_filename }}"
+  register: security_limits_1_5_1
+  tags:
+    - level-1
+    - "1.5.1"
+    - scored
+
+- name: 1.5.1 - Ensure core dumps are restricted
+  copy:
+    dest: "{{ cis_security_limits_filename }}"
+    content: "* hard core 0\n"
+  when: (security_limits_1_5_1.stat.exists is not defined or not security_limits_1_5_1.stat.exists) and amzn_cis_rule_1_5_1
+  tags:
+    - level-1
+    - "1.5.1"
+    - scored
+
+- name: 1.5.1 - Ensure core dumps are restricted
+  pam_limits:
+    dest: "{{ cis_security_limits_filename }}"
+    limit_item: "core"
+    limit_type: "hard"
+    domain: "*"
+    value: "0"
+  when: (security_limits_1_5_1.stat.exists is not defined or not security_limits_1_5_1.stat.exists) and amzn_cis_rule_1_5_1
+  tags:
+    - level-1
+    - "1.5.1"
+    - scored
+
+- name: 1.5.1 - Prevent suid programs from dumping core
+  sysctl:
+    ignoreerrors: yes
+    name: fs.suid_dumpable
+    value: 0
+    state: present
+  when: (security_limits_1_5_1.stat.exists is not defined or not security_limits_1_5_1.stat.exists) and amzn_cis_rule_1_5_1
+  tags:
+    - level-1
+    - "1.5.1"
+    - scored
+
+
+
+
+# 1.5.2 Ensure XD/NX support is enabled
+
+- name: 1.5.2 - Check if XD/NX support is enabled
+  shell: "dmesg | grep NX"
+  register: dmesg_1_5_2
+  check_mode: no
+  changed_when: False
+  ignore_errors: true
+  tags:
+    - level-1
+    - "1.5.2"
+    - not-scored
+
+- name: 1.5.2 - Ensure XD/NX support is enabled
+  fail:
+    msg: "Ensure XD/NX support is enabled."
+  when:
+    - "'NX (Execute Disable) protection: active' not in dmesg_1_5_2.stdout"
+    - fail_on_manual_remediation_actions
+    - amzn_cis_rule_1_5_2
+  tags:
+    - level-1
+    - "1.5.2"
+    - not-scored
+
+- name: 1.5.2 - Ensure XD/NX support is enabled
+  debug:
+    msg: "*** ACTION REQUIRED *** Ensure XD/NX support is enabled."
+  when:
+    - "'NX (Execute Disable) protection: active' not in dmesg_1_5_2.stdout"
+    - not fail_on_manual_remediation_actions
+    - amzn_cis_rule_1_5_2
+  tags:
+    - level-1
+    - "1.5.2"
+    - not-scored
+
+
+
+
+# 1.5.3 Ensure address space layout randomization (ASLR) is enabled
+
+- name: 1.5.3 - Ensure address space layout randomization is enabled
+  sysctl:
+    ignoreerrors: yes
+    name: kernel.randomize_va_space
+    value: 2
+    state: present
+  when: amzn_cis_rule_1_5_3
+  tags:
+    - level-1
+    - "1.5.3"
+    - scored
+
+
+
+# 1.5.4 Ensure prelink is disabled
+
+- name: Check if prelink binary exists
+  command: which prelink
+  ignore_errors: true
+  register: which_1_5_4
+  tags:
+    - level-1
+    - "1.5.4"
+    - scored
+
+- name: Restore prelinked binaries
+  command: prelink -ua
+  when: (which_1_5_4.rc is defined and which_1_5_4.rc == 0) and amzn_cis_rule_1_5_4
+  tags:
+    - level-1
+    - "1.5.4"
+    - scored
+
+- name: Ensure prelink is disabled
+  yum:
+    name: prelink
+    state: absent
+  tags:
+    - level-1
+    - "1.5.4"
+    - scored
+
+
+
+# 1.6.1.1 Ensure SELinux is not disabled in bootloader configuration (Scored)
+
+- name: Install the SE Linux requirements
+  yum:
+    name: "{{ item }}"
+    state: installed
+  when: amzn_cis_rule_1_6_1_1
+  with_items:
+    - policycoreutils
+    - selinux-policy-targeted
+    - policycoreutils-python
+
+
+- name: 1.6.1.1 Ensure SELinux is not disabled in bootloader configuration (Scored)
+  lineinfile:
+    path: /etc/default/grub
+    backrefs: yes
+    regexp: "^(GRUB_CMDLINE_LINUX_DEFAULT=((?!{{ item }}).)*)$"
+    line: '\1,{{ item }}'
+  when: amzn_cis_rule_1_6_1_1
+  with_items:
+    - 'selinux=1'
+    - 'security=selinux'
+    - 'enforcing=1'
+  tags:
+    - level-1
+    - section-1
+    - "1.6.1.1"
+    - scored
+    - amzn2
+
+
+
+
+# 1.6.1.2. Ensure the SELinux state is enforcing (Scored)
+
+- name: 1.6.1.2 Ensure the SELinux state is enforcing (Scored)
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: 'SELINUX=enabled'
+  when: amzn_cis_rule_1_6_1_2
+  tags:
+      - level-1
+      - section-1
+      - "1.1.6.2"
+      - scored
+
+
+# 1.6.1.3 Ensure SELinux policy is configured (Scored)
+
+- name: 1.6.1.3 Ensure SELinux policy is configured (Scored)
+  selinux:
+    path: /etc/selinux/config
+    regexp: '^SELINUXTYPE='
+    line: 'SELINUXTYPE=targeted'
+  when: amzn_cis_rule_1_6_1_3
+  tags:
+      - level-1
+      - section-1
+      - "1.1.6.3"
+      - scored
+
+
+
+# 1.6.1.4 Ensure SETroubleshoot is not installed (Scored)
+
+- name: 1.6.1.4 Ensure SETroubleshoot is not installed (Scored)
+  yum:
+    name: setroubleshoot
+    state: removed
+  when: amzn_cis_rule_1_6_1_4
+  tags:
+      - level-1
+      - section-1
+      - "1.1.11"
+      - scored
+
+
+
+
+# 1.6.1.6 Ensure no unconfined daemons exist (Scored)
+
+- name: 1.6.1.6 Ensure no unconfined daemons exist (Scored)
+  script: "{{ role_path }}/files/audit_1.6.1.6.sh"
+  check_mode: no
+  changed_when: False
+  register: audit_1_6_1_6
+  tags:
+    - level-1
+    - section-6
+    - "1.6.1.6"
+    - scored
+
+- name: 1.6.1.6 Ensure no unconfined daemons exist (Scored)
+  fail:
+    msg: "{{ audit_1_6_1_6.stdout_lines }}"
+  when:
+    - audit_1_6_1_6.stdout_lines is defined and audit_1_6_1_6.stdout_lines|length > 0
+    - fail_on_manual_remediation_actions
+    - amzn_cis_rule_1_6_1_6
+  tags:
+    - level-1
+    - section-6
+    - "1.6.1.6"
+    - scored
+
+- name: 1.6.1.6 Ensure no unconfined daemons exist (Scored)
+  debug:
+    msg: "*** ACTION REQUIRED *** {{ audit_1_6_1_6.stdout }}"
+  when:
+    - audit_1_6_1_6.stdout_lines is defined and audit_1_6_1_6.stdout_lines|length > 0
+    - not fail_on_manual_remediation_actions
+    - amzn_cis_rule_1_6_1_6
+  tags:
+    - level-1
+    - section-6
+    - "1.6.1.6"
+    - scored
+
+
+
+# 1.7.1.1 Ensure message of the day is configured properly
+
+# /etc/motd is dynamically generated by pam on login. The intention of this check is to ensure that OS
+# information is not disclosed, therefore the more appropriate option is to ensure that the scripts which
+# generate motd, and which are related to system information which would otherwise be
+# displayed by mingetty options, are not present.
+# On amazon linux, this is the 30-banner script within /etc/update-motd.d/
+- name: 1.7.1.1 - Ensure mingetty options are not used within motd
+  file:
+    path: "/etc/update-motd.d/30-banner"
+    state: absent
+  when: amzn_cis_rule_1_7_1_1
+  tags:
+    - level-1
+    - 1.7.1.1
+    - scored
+
+
+
+# 1.7.1.2 Ensure local login warning banner is configured properly
+
+- name: 1.7.1.2 - Ensure local login warning banner is configured properly
+  copy:
+    content: "{{ cis_local_login_warning_banner }}"
+    dest: "/etc/issue"
+  when: amzn_cis_rule_1_7_1_2
+  tags:
+    - level-1
+    - 1.7.1.2
+    - not-scored
+
+
+
+# 1.7.1.3 Ensure remote login warning banner is configured properly
+
+- name: 1.7.1.3 - Ensure remote login warning banner is configured properly
+  copy:
+    content: "{{ cis_remote_login_warning_banner }}"
+    dest: "/etc/issue.net"
+  when: amzn_cis_rule_1_7_1_3
+  tags:
+    - level-1
+    - 1.7.1.3
+    - not-scored
+
+
+
+# 1.7.1.4 Ensure permissions on /etc/motd are configured
+
+- name: 1.7.1.4 - Ensure permissions on /etc/motd are configured
+  file:
+    path: "/etc/motd"
+    owner: root
+    group: root
+    mode: 0644
+    follow: yes
+  when: amzn_cis_rule_1_7_1_4
+  tags:
+    - level-1
+    - 1.7.1.4
+    - not-scored
+
+
+
+# 1.7.1.5 Ensure permissions on /etc/issue are configured
+
+- name: 1.7.1.5 - Ensure permissions on /etc/issue are configured
+  file:
+    path: "/etc/issue"
+    owner: root
+    group: root
+    mode: 0644
+  when: amzn_cis_rule_1_7_1_5
+  tags:
+    - level-1
+    - 1.7.1.5
+    - scored
+
+
+
+# 1.7.1.6 Ensure permissions on /etc/issue.net are configured
+
+- name: 1.7.1.6 - Ensure permissions on /etc/issue.net are configured
+  file:
+    path: "/etc/issue.net"
+    owner: root
+    group: root
+    mode: 0644
+  when: amzn_cis_rule_1_7_1_6
+  tags:
+    - level-1
+    - 1.7.1.6
+    - not-scored
+
+
+
+# 1.8 Ensure updates, patches, and additional security software are installed
+
+- name: 1.8 - Ensure updates, patches, and additional security software are installed
+  yum:
+    name: "*"
+    state: latest
+    tags:
+    - level-1
+    - "1.8"
+    - not-scored
+  when:
+    - full_upgrade
+    - amzn_cis_rule_1_8
