@@ -960,7 +960,7 @@
     name: "{{ item }}"
     shell: "/sbin/nologin"
   with_items: "{{ audit_5_4_2.stdout_lines }}"
-  when: ("item not in cis_skip_lock_users") and amzn_cis_rule_5_4_2
+  when: (item not in cis_skip_lock_users) and amzn_cis_rule_5_4_2
   tags:
     - level-1
     - section-5
@@ -1027,7 +1027,7 @@
 - name: 5.5 - Configure wheel group members who can access the su command
   lineinfile:
     regexp: "^wheel:"
-    line: "wheel:x:10:{{ cis_wheel_group_members }}"
+    line: "wheel:x:10:{{ cis_wheel_group_members|join(',') }}"
     dest: "/etc/group"
   when: amzn_cis_rule_5_5
   tags:
