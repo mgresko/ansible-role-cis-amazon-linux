@@ -8,6 +8,7 @@
   args:
     creates: /tmp/test.out
   become: yes
+  ignore_errors: yes
   when: amzn_cis_rule_6_1_1
   tags:
     - level-1
