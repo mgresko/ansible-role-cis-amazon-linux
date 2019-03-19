@@ -5,10 +5,13 @@
 
 - name: 3.1.1 - Ensure IP forwarding is disabled
   sysctl:
-    name: net.ipv4.ip_forward
+    name: "{{ item }}"
     value: 0
     state: present
   when: amzn_cis_rule_3_1_1
+  with_items:
+    - "net.ipv4.ip_forward"
+    - "net.ipv6.conf.all.forwarding"
   tags:
     - level-1
     - section-3
@@ -20,6 +23,7 @@
   with_items:
     - "sysctl -w net.ipv4.ip_forward=0"
     - "sysctl -w net.ipv4.route.flush=1"
+    - "sysctl -w net.ipv6.conf.all.forwarding=0"
   when: amzn_cis_rule_3_1_1
   tags:
     - level-1
@@ -74,6 +78,8 @@
   with_items:
     - "net.ipv4.conf.all.accept_source_route"
     - "net.ipv4.conf.default.accept_source_route"
+    - "net.ipv6.conf.all.accept_source_route"
+    - "net.ipv6.conf.default.accept_source_route"
   tags:
     - level-1
     - section-3
@@ -86,6 +92,8 @@
     - "sysctl -w net.ipv4.conf.all.accept_source_route=0"
     - "sysctl -w net.ipv4.conf.default.accept_source_route=0"
     - "sysctl -w net.ipv4.route.flush=1"
+    - "sysctl -w net.ipv6.conf.all.accept_source_route=0"
+    - "sysctl -w net.ipv6.conf.default.accept_source_route=0"
   when: amzn_cis_rule_3_2_1
   tags:
     - level-1
@@ -106,6 +114,8 @@
   with_items:
     - "net.ipv4.conf.all.accept_redirects"
     - "net.ipv4.conf.default.accept_redirects"
+    - "net.ipv6.conf.all.accept_redirects"
+    - "net.ipv6.conf.default.accept_redirects"
   when: amzn_cis_rule_3_2_2
   tags:
     - level-1
@@ -119,6 +129,8 @@
     - "sysctl -w net.ipv4.conf.all.accept_redirects=0"
     - "sysctl -w net.ipv4.conf.default.accept_redirects=0"
     - "sysctl -w net.ipv4.route.flush=1"
+    - "sysctl -w net.ipv6.conf.all.accept_redirects=0"
+    - "sysctl -w net.ipv6.conf.default.accept_redirects=0"
   when: amzn_cis_rule_3_2_2
   tags:
     - level-1
@@ -573,7 +585,7 @@
     dest: "{{ cis_modprobe_conf_filename }}"
     regexp: "^install dccp\\s+"
     line: "install dccp /bin/true"
-  when: (modprobe_3_5_1.stat.exists is not defined or not modprobe_3_5_1.stat.exists) and amzn_cis_rule_3_5_1
+  when: (modprobe_3_5_1.stat.exists is defined or modprobe_3_5_1.stat.exists) and amzn_cis_rule_3_5_1
   tags:
     - level-1
     - section-3
@@ -610,7 +622,7 @@
     dest: "{{ cis_modprobe_conf_filename }}"
     regexp: "^install sctp\\s+"
     line: "install sctp /bin/true"
-  when: (modprobe_3_5_2.stat.exists is not defined or not modprobe_3_5_2.stat.exists) and amzn_cis_rule_3_5_2
+  when: (modprobe_3_5_2.stat.exists is defined or oodprobe_3_5_2.stat.exists) and amzn_cis_rule_3_5_2
   tags:
     - level-1
     - section-3
@@ -648,7 +660,7 @@
     dest: "{{ cis_modprobe_conf_filename }}"
     regexp: "^install rds\\s+"
     line: "install rds /bin/true"
-  when: (modprobe_3_5_3.stat.exists is not defined or not modprobe_3_5_3.stat.exists) and amzn_cis_rule_3_5_3
+  when: (modprobe_3_5_3.stat.exists is defined or modprobe_3_5_3.stat.exists) and amzn_cis_rule_3_5_3
   tags:
     - level-1
     - section-3
@@ -685,7 +697,7 @@
     dest: "{{ cis_modprobe_conf_filename }}"
     regexp: "^install tipc\\s+"
     line: "install tipc /bin/true"
-  when: (modprobe_3_5_4.stat.exists is not defined or not modprobe_3_5_4.stat.exists) and amzn_cis_rule_3_5_4
+  when: (modprobe_3_5_4.stat.exists is defined or modprobe_3_5_4.stat.exists) and amzn_cis_rule_3_5_4
   tags:
     - level-1
     - section-3
