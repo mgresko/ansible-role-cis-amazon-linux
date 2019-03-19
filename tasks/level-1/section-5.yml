@@ -658,6 +658,17 @@
     - "5.3.1"
     - scored
 
+# 5.3.4 Ensure password hashing algorithm is SHA-512
+# NOTE:  putting this before rest of 5.3.x b/c authconfig erases settings configured.  sigh
+
+- name: 5.3.4 - Ensure password hashing algorithm is SHA-512
+  command: "authconfig --update --passalgo=sha512"
+  when: amzn_cis_rule_5_3_4
+  tags:
+    - level-1
+    - section-5
+    - "5.3.4"
+    - scored
 
 
 # 5.3.2 Ensure lockout for failed password attempts is configured
@@ -778,17 +789,6 @@
     - scored
 
 
-
-# 5.3.4 Ensure password hashing algorithm is SHA-512
-
-- name: 5.3.4 - Ensure password hashing algorithm is SHA-512
-  command: "authconfig --update --passalgo=sha512"
-  when: amzn_cis_rule_5_3_4
-  tags:
-    - level-1
-    - section-5
-    - "5.3.4"
-    - scored
 
 
 
