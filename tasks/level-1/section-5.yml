@@ -751,9 +751,9 @@
     type: password
     control: sufficient
     module_path: pam_unix.so
-    new_control: sufficient
+    #    new_control: sufficient
     module_arguments: 'remember=5'
-    state: updated
+    state: args_present
   when: amzn_cis_rule_5_3_3
   tags:
     - level-1
@@ -767,9 +767,9 @@
     type: password
     control: sufficient
     module_path: pam_unix.so
-    new_control: sufficient
+    #    new_control: sufficient
     module_arguments: 'remember=5'
-    state: updated
+    state: args_present
   when: amzn_cis_rule_5_3_3
   tags:
     - level-1

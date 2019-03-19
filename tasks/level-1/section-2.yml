@@ -1,7 +1,6 @@
 ---
 
 
-
 # 2.1.1 Ensure chargen services are not enabled
 
 - name: 2.1.1 - Ensure chargen services are not enabled
@@ -281,10 +280,10 @@
 
 # 2.2.1.3 Ensure chrony is configured
 
-- name: Set Options -u chrony in /etc/sysconfig/chrony
+- name: Set Options -u chrony in /etc/sysconfig/chronyd
   lineinfile:
-    path: /etc/sysconfig/chrony
-    regexp: '^OPTIONS=.*$'
+    path: /etc/sysconfig/chronyd
+    regexp: '^OPTIONS='
     line: 'OPTIONS="-u chrony"'
     create: yes
   when: amzn_cis_rule_2_2_1_3 and cis_enable_chrony
